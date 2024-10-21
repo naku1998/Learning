@@ -27,12 +27,42 @@ Edit it to change it to the correct username.
 Delete it, and Git will ask you to log in with the correct username the next time you push.
 After this, when you try to push your code to GitHub, it will ask you for the correct login credentials and use those.
 
-add1
-add2
-add3
-add4
-add5
-add6
-add7
-add8
-add9
+# Diff bw merge and rebase
+https://youtube.com/shorts/vluCkVfqEVI?feature=shared
+
+In simple terms, both Git merge and Git rebase are ways to combine changes from different branches in Git, but they do it differently.
+
+1. Git Merge (Like merging two paths into one)
+What it does: It takes the changes from one branch and merges them into another branch, creating a new "merge commit" that ties the two histories together.
+
+How it looks: The history will have a new point where the two branches came together, but both branch histories are still visible.
+Example: Imagine two roads (branches) coming together at a junction. After the merge, both roads are still visible, but you can now walk down one road that connects them both.
+
+Result: You keep the full history of both branches.
+Pros:
+
+Keeps a clear record of when the branches merged.
+Good for collaboration since everyone can see the separate paths that were merged.
+easy to solve conflicts
+Cons:
+
+The commit history can get messy with many branches being merged.
+
+2. Git Rebase (Like rewriting history to one clean path)
+What it does: It takes the changes from one branch and re-applies them on top of another branch, as if they were made there in the first place.
+Example: Imagine two roads that are parallel (two branches). After rebase, it's like one road is lifted and laid down directly on top of the other, making it look like there was only one road the whole time.
+
+Result: You get a cleaner, linear history.
+Pros:
+
+Creates a neat, straight history without merge commits.
+Useful when you want to clean up the history before sharing it with others.
+Cons:
+
+You’re rewriting history, so it can be tricky or dangerous when collaborating with others (because you’re changing the original commit history).
+
+difficult to resolve conlflicts
+
+Summary:
+Git Merge: Combines two branches, keeping the full history of both. The result has a new merge commit.
+Git Rebase: Reapplies the changes from one branch onto another, creating a clean, linear history but rewriting history in the process.
