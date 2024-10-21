@@ -1,0 +1,32 @@
+Go to google and install git.
+check if install or not with: git --version.
+set username and mail:see comands from google.
+
+# NOTE: sometimes the saved username and saved credentials are different
+
+# Your Name in Commits (git config user.name):
+
+This is like signing your name on a piece of work. Every time you make a change (commit), Git needs to know what name to attach to that change. This is what the git config user.name is for.
+Example: If you configure your name as "Nakul Gupta," Git will say "Nakul Gupta made this change" in the project history. This is what you see when you run the command git config user.name.
+
+# Your Username for Logging Into GitHub:
+
+When you push your code to GitHub (or another remote server), Git needs to know how to log in. The login username is stored in a place like Windows Credential Manager (on Windows). This can is separate from the name used in your commits.
+Example: You might log into GitHub with the username nakulginilytics or nakul123, and that's what gets saved for pushing code to GitHub.
+
+# This could cause problems in Pull and Push Requests:
+How to Fix It:
+Open Windows Credential Manager:
+
+Go to Control Panel → Credential Manager → Windows Credentials.
+Find the entry for github.com (this is where your login details are saved).
+Update or Delete the Wrong Username:
+
+If you see nakulginilytics saved, you can either:
+Edit it to change it to the correct username.
+Delete it, and Git will ask you to log in with the correct username the next time you push.
+After this, when you try to push your code to GitHub, it will ask you for the correct login credentials and use those.
+
+
+
+
