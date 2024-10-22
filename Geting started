@@ -66,3 +66,23 @@ difficult to resolve conlflicts
 Summary:
 Git Merge: Combines two branches, keeping the full history of both. The result has a new merge commit.
 Git Rebase: Reapplies the changes from one branch onto another, creating a clean, linear history but rewriting history in the process.
+
+# steps for PULL,COMMIT,PUSH.
+suppose you have multiple branches
+
+1. main
+2. Dev
+3. Nakul
+4. Parv
+
+# suppose Nakul want to push some changes,steps are:
+1. stash changes first in case you wants to take pull from own branch then unstansh after pull.
+2. after pull add changes in staging.
+3. add relevent commit message and commit changes.
+4. Push changes 
+
+# Parv want to get changes from Nakul
+  1. stash change if have any and then switch to branch you want to get changes from (in this case Nakul) take pull.
+  2. After pull switch to Own branch (Parv) and then unstash. Your changes and Nakul changes now are in Local Repo i.e your pc not GitHub.
+  
+
