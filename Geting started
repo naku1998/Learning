@@ -83,7 +83,9 @@ suppose you have multiple branches
 
 # Parv want to get changes from Nakul
   1. stash change if have any and then switch to branch you want to get changes from (in this case Nakul) take pull.
-  2. After pull switch to Own branch and merge code with Nakul either by rebase or merge.
+  2. After pull switch to Own branch (Parv) and merge code with Nakul either by rebase or merge.
+     # suppose you are in Parv branch and you took pull from Nakul branch and switch to Parv you can
+     # either 1. git rebase Nakul 2. git merge Nakul.
   3. After Merge apply stash and now your changes and Nakul changes are together in local repo.
   4. Commit and Push those changes in You branch i.e (Parv)
   
