@@ -88,3 +88,27 @@ suppose you have multiple branches
   4. Commit and Push those changes in You branch i.e (Parv)
   
 
+# How to add existing project from visual studio code to github
+  Link: https://www.youtube.com/watch?v=JB7YD7OKm5g&ab_channel=TheCodeCity
+
+  In case link does not work steps are:
+  1. Make sure you are logged in with correct github account on your local system, Check credential manager
+ ![alt text](image.png)
+
+ 2. First Create new Reporitory in Github 
+
+ 3. After that open project in VS code and in terminal run the comands
+    # git init (Make sure you have git installed)
+    # commit the changes 
+    # git add remote origin link to repo +.git eg. (https://github.com/naku1998/Angular-Notes.git)
+    check if project is added or not
+    # git remote -v these should print 
+    Make sure it prints:
+    origin  https://github.com/naku1998/Angular-Notes.git (fetch)
+    origin  https://github.com/naku1998/Angular-Notes.git (push)
+    # Lastly push git push origin <branchname>
+
+
+
+    
+
