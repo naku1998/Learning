@@ -1,0 +1,3 @@
+#BUG 1.  const displayNumber = this.cues.find(cue => cue.cueId = this.showaxisedit.cueId).axes.length;
+=> In This Line we used single = which could alter origional array, Creating Difficult to find Bug.
+=>CORRECT  const displayNumber = this.cues.find(cue => cue.cueId == this.showaxisedit.cueId).axes.length;

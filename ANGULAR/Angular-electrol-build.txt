@@ -1,0 +1,59 @@
+One time only
+
+sudo apt install ruby ruby-dev
+
+sudo gem install fpm
+
+To install some packages
+
+nvm install 14.15.0
+
+To install dependency
+
+npm i
+
+Each time when you want to create build
+
+1. npm run electron:local
+2. sudo USE_SYSTEM_FPM=true yarn run electron-builder build --linux deb --armv7l
+
+To remove existing install application
+
+sudo apt remove chicago-flyhouse
+
+=============================================================================================
+
+
+New build instructions for raspberry pi - 24-Jan-2023
+
+1. npm i
+2. npm i serialport --build-from-source --save ------------------------- Don't need to do.
+3. cd node_modules/@serialport/bindings-cpp
+4. sudo node-gyp configure build
+5. npm i @types/serialport --save -------------------------------------- Don't need to do.
+6. npm run electron:local
+
+
+For New machine follow after 6 number points
+
+1. npm i -g electron
+2. sudo npm i -g node-gyp node-pre-gyp
+3. npm i -g electron-packager
+4. npm i -g electron-installer-debian
+5. npm run electron:local
+
+
+after complete all following points run build command
+1. electron-packager . chicago-flyhouse --overwrite --asar=true --platform=linux --arch=armv7l --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds
+2. electron-installer-debian --src release-builds/chicago-flyhouse-linux-armv7l/ --dest out/installers/ --arch armhf
+
+
+To remove existing install application
+
+sudo apt remove chicago-flyhouse
+
+
+
+
+
+

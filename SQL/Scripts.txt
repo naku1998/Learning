@@ -1,0 +1,20 @@
+Script to copy table data to insert into another same db table.Remember when we want to copy Flyhouse Role table data .
+
+--------------------------- Description ------------------------------------
+
+[Id]: The integer column Id is cast to NVARCHAR(MAX) for concatenation.
+[Name] and [Description]: Both columns are of VARCHAR type and require escaping of single quotes to avoid SQL errors.
+CHAR(13) + CHAR(10): This combination adds a newline after each INSERT statement, making the output easier to read.
+
+
+
+DECLARE @InsertScript NVARCHAR(MAX) = '';
+
+SELECT @InsertScript = @InsertScript + 
+'INSERT INTO [Roles] ([Id], [Name], [Description])
+VALUES (' + CAST([Id] AS NVARCHAR(MAX)) + ', ''' + REPLACE([Name], '''', '''''') + ''', ''' + REPLACE([Description], '''', '''''') + ''');' + CHAR(13) + CHAR(10)
+FROM [Roles];
+
+PRINT @InsertScript;
+
+=================================================================================

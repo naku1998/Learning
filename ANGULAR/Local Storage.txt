@@ -1,0 +1,16 @@
+--------Using Local Storage----------
+
+ object=
+  {
+    name:"Nakul",
+    Age:"33",
+  }
+
+//JSON.Strtigify converts javascript object in json format.
+
+ localStorage.setItem('axisList', JSON.stringify(this.object));
+
+//To convert json to object
+
+this.joyStickFirst= sessionStorage.getItem('axisList');
+const firstJoy = JSON.parse(this.joyStickFirst);

@@ -1,0 +1,95 @@
+----------One time only on fresh machine--------------
+
+1.sudo apt install ruby ruby-dev
+check version: ruby -v
+
+Installs Ruby and its development libraries (ruby-dev) on the system.
+Required for fpm, a package manager for building .deb packages.
+check version : fpm -v
+
+2.sudo gem install fpm
+Installs fpm (Effing Package Manager), which is used to create Linux packages (.deb, .rpm, etc.).
+
+
+-------To install some packages-----------
+
+Before installing NVM, update your system packages:
+1.sudo apt update && sudo apt upgrade -y
+
+Run the following command to install NVM:
+(Replace v0.39.4 with the latest version if needed.)
+
+2.curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+
+3.nvm install 14.17.5 (Before that make Sure you have Nvm installed If not install using above comands)
+
+Now Open Application folder in Terminal
+
+First chanage name of package.lock.json to package.lock.json-old file it does not allow new dependencies to install sometimes.
+It will create automatically after some time and then remove old one
+
+2.npm i
+Installs all project dependencies listed in package.json.
+
+--------Each time when you want to create build------
+
+First install yarn
+npm install -g yarn
+check version : yarn -v
+1.npm run electron:local
+2. sudo USE_SYSTEM_FPM=true yarn run electron-builder build --linux deb --armv7l     : for 32 bit system
+                                 OR
+2. sudo USE_SYSTEM_FPM=true yarn run electron-builder build --linux deb --arm64         : for 64 bit system
+
+
+
+=============================================================================================
+
+
+New build instructions for raspberry pi - 24-Jan-2023
+use sudo before a comand if you face permisshion denied error
+
+1. npm i (Dont if already have)
+2. npm i serialport --build-from-source --save ------------------------- Don't need to do.
+   check if installed or not: npm list serialport
+
+3. cd node_modules/@serialport/bindings-cpp
+4. sudo node-gyp configure build
+5. npm i @types/serialport --save -------------------------------------- Don't need to do.
+6. npm run electron:local
+
+
+For New machine follow after 6 number points
+
+1. npm i -g electron || sudo npm i -g electron@13.6.9
+2. sudo npm i -g node-gyp node-pre-gyp
+3. sudo npm i -g electron-packager
+4. sudo npm i -g electron-installer-debian
+5. npm run electron:local
+
+
+after complete all following points run build command
+1. electron-packager . chicago-flyhouse --overwrite --asar=true --platform=linux --arch=armv7l --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds
+
+                                                                  OR
+
+electron-packager . chicago-flyhouse --overwrite --asar=true --platform=linux --arch=arm64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds
+
+
+2. electron-installer-debian --src release-builds/chicago-flyhouse-linux-armv7l/ --dest out/installers/ --arch armhf
+
+                                               OR
+
+electron-installer-debian --src release-builds/chicago-flyhouse-linux-arm64/ --dest out/installers/ --arch armhf
+
+
+
+To remove existing install application
+
+sudo apt remove chicago-flyhouse
+
+
+
+
+
+

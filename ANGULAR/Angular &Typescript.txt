@@ -1,0 +1,50 @@
+Unexpected token. A constructor, method, accessor, or property was expected.ts(1068)
+
+Inside a class, TypeScript doesn't permit the declaration of class members with
+
+var
+let
+const (you can use readonly on the property)
+Further, inside of a class ALSO you'll be prohibited from declarating functions with
+
+function
+So you want this.
+
+export class AppComponent {
+
+  a: string = "foo";
+  b: string = "bar";
+
+
+  foo(): void { }
+
+  constructor(){
+  }
+
+}
+
+//declare a array of type any (which accepts anyvalue)
+ registrationform: any = [];
+
+
+
+// we fill a customized value for ProductName column
+<div class="form-group">
+              <label for="ProductName"> Product Name</label>
+              <input 
+                  formControlName="ProductName"
+                  id="ProductName" 
+                  type="text" 
+                  [(ngModel)]="tempname"   //  default value of tempname is saved in .ts file
+                  class="form-control">
+            
+          </div>
+
+//Reload the page
+ reload()
+  {
+
+    window.location.reload()
+  }
+
+and we can call reload(); in any meathod and it will refresh the page 

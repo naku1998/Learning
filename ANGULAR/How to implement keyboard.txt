@@ -1,0 +1,307 @@
+<!-- numpad -->HtMl
+
+// example of how to bind input on input field.
+
+ <input onfocus="this.select()" (click)="selectedfield(1)" class="form-control text-end" type="text"
+ name="axisDisplayName" [(ngModel)]="showaxisedit.displayName" [disabled]="roleId > 1" />
+
+
+
+-------------------Keyboard code -----------------
+
+<div class="keypad d-flex justify-content-between mx-auto pt-4" *ngIf="selectfield!==1">
+  <div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="7">7</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="8">8</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="9">9</button>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="4">4</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="5">5</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="6">6</button>
+      <button type="button" class="btn btn-outline-primary numpad" *ngIf="selectedPositionUnitType == 1"
+        (click)="press($event)" value='"'>"</button>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="1">1</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="2">2</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="3">3</button>
+      <button type="button" class="btn btn-outline-primary numpad" *ngIf="selectedPositionUnitType == 1"
+        (click)="press($event)" value="'">'</button>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value="0">0</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="press($event)" value=".">.</button>
+      <button type="button" class="btn btn-outline-primary numpad" (click)="selectfield = '' ">Enter</button>
+    </div>
+  </div>
+  <div>
+    <button type="button" style="font-size: 25px !important" class="btn btn-outline-primary remove-count numpad"
+      (click)="press($event)">
+      <i class="fa-solid fa-delete-left"></i>
+    </button>
+  </div>
+</div>
+
+
+<!-- alphapad -->
+
+<div class="keypad d-flex justify-content-between  pt-4" *ngIf="selectfield == 1">
+  <div>
+    <div class="d-flex ">
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="1">1</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="2">2</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="3">3</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="4">4</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="5">5</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="6">6</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="7">7</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="8">8</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="9">9</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="0">0</button>
+      <button type="button" style="font-size: 15px !important" class="btn btn-outline-primary remove-count"
+        (click)="press($event)">
+        <i class="fa-solid fa-delete-left"></i>
+      </button>
+    </div>
+    <div class="d-flex " *ngIf="capsLock">
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="Q">Q</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="W">W</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="E">E</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="R">R</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="T">T</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="Y">Y</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="U">U</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="I">I</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="O">O</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="P">P</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="-">-</button>
+    </div>
+    <div class="d-flex" *ngIf="capsLock">
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)"
+        value="A">A</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="S">S</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="D">D</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="F">F</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="G">G</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="H">H</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="J">J</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="K">K</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="L">L</button>
+      <button type="button"   style="width: 78px; font-size: 16px !important;" class="btn btn-outline-primary"
+        (click)="capsLock=!capsLock">Caps
+        Lock</button>
+    </div>
+
+    <div class="d-flex" *ngIf="capsLock">
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="Z">Z</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="X">X</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="C">C</button>
+      <button type="button" style="width: 100px;" class="btn btn-outline-primary" (click)="press($event)"
+        value=" "></button>
+      <button type="button" style="width: 54px; font-size: 17px!important;" class="btn btn-outline-primary"
+        (click)="selectfield = '' ">ENTER</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="V">V</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="B">B</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="N">N</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="M">M</button>
+    </div>
+
+    <div class="d-flex justify-content-center" *ngIf="!capsLock">
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="q">q</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="w">w</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="e">e</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="r">r</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="t">t</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="y">y</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="u">u</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="i">i</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="o">o</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="p">p</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="-">-</button>
+    </div>
+
+    <div class="d-flex" *ngIf="!capsLock">
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="a">a</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="s">s</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="d">d</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="f">f</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="g">g</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="h">h</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="j">j</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="k">k</button>
+      <button type="button"  class="btn btn-outline-primary" (click)="press($event)"
+        value="l">l</button>
+        <button type="button"  style="width: 78px; font-size: 16px !important;" class="btn btn-outline-primary"
+        (click)="capsLock=!capsLock">Caps
+        Lock</button>
+    </div>
+    <div class="d-flex" *ngIf="!capsLock">
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="z">z</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="x">x</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="c">c</button>
+      <button type="button" style="width: 100px;" class="btn btn-outline-primary" (click)="press($event)"
+        value=" "></button>
+      <button type="button" style="width: 54px; font-size: 17px!important;" class="btn btn-outline-primary"
+        (click)="selectfield = '' ">ENTER</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="v">v</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="b">b</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="n">n</button>
+      <button type="button" class="btn btn-outline-primary" (click)="press($event)" value="m">m</button>
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+</div>
+
+
+
+ ----------------------css---------------
+.keypad {
+  width: 280px;
+
+  .btn {
+    width: 34px;
+    height: 40px;
+    margin: 5px;
+    padding: 0 !important;
+    font-size: 32px ;
+    min-width: 10px !important;
+    color: #97abb6 !important;
+    border-radius: 8px !important;
+    border-width: 2px !important;
+    font-family: DIN_Condensed_light;
+    border-color: #8497a1 !important;
+    background-color: #3E545F !important;
+
+    &.remove-count {
+      font-size: 24px !important;
+    }
+  }
+}
+here we are overriding class btn width and height for numpad with new width and height using '!important'.
+.numpad
+{
+  width: 62px!important;
+  height: 58px !important;
+}
+
+
+
+-------------------.ts----------------
+
+ capsLock:boolean= true;
+  clearall:boolean;
+  selectfield:any;
+  selectedfield(id:any)
+  {
+   this.selectfield = id;
+    this.clearall = true;
+  }
+
+  number: string = "";
+  press(event: any) {
+    if(this.clearall){
+      this.number = "";
+      this.clearall= false;
+    }
+    if (event.target.value != undefined && event.target.value != "") {
+      this.number = this.number + event.target.value;
+      this.add();
+    }
+    else {
+      this.number = this.number.slice(0, -1);
+     this.add();
+    }
+  }
+
+  add()
+  {
+    if(this.selectfield == 1)
+    {
+      this.showaxisedit.displayName = this.number;
+    }
+    if(this.selectfield == 2)
+    {
+      this.showaxisedit.actualPosition = this.number;
+    }
+    else if(this.selectfield == 3 )
+    {
+      this.showaxisedit.maxLoad = this.number;
+    }
+    else if(this.selectfield == 4)
+    {
+      this.showaxisedit.loadCellWarning = this.number;
+    }
+    else if(this.selectfield == 5 )
+    {
+      this.showaxisedit.loadCellLimit = this.number;
+    }
+    else if(this.selectfield == 6 )
+    {
+      this.showaxisedit.loadCellMeasuringDelay = this.number;
+    }
+    else if(this.selectfield == 7 )
+    {
+      this.showaxisedit.softDownLimit = this.number;
+    }
+    else if(this.selectfield == 8)
+    {
+      this.showaxisedit.softUpLimit = this.number;
+    }
+    else if(this.selectfield == 9)
+    {
+      this.showaxisedit.riggedSoftDownLimit = this.number;
+    }
+    else if(this.selectfield == 10)
+    {
+      this.showaxisedit.riggedSoftUpLimit = this.number;
+    }
+    else if(this.selectfield == 11)
+    {
+      this.showaxisedit.minVelocity = this.number;
+    }
+    else if(this.selectfield == 12)
+    {
+      this.showaxisedit.defaultAcceleration= this.number;
+    }
+    else if(this.selectfield == 13)
+    {
+      this.showaxisedit.maxAcceleration = this.number;
+    }
+    else if(this.selectfield == 14)
+    {
+      this.showaxisedit.defaultVelocity = this.number;
+    }
+    else if(this.selectfield == 15)
+    {
+      this.showaxisedit.maxVelocity = this.number;
+    }
+    else if(this.selectfield == 16)
+    {
+      this.showaxisedit.defaultDeceleration = this.number;
+    }
+    else if(this.selectfield == 17 )
+    {
+      this.showaxisedit.maxDeceleration = this.number;
+    }
+  }

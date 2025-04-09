@@ -1,0 +1,168 @@
+Link To Implement:
+
+https://www.c-sharpcorner.com/article/authentication-authorization-using-net-core-web-api-using-jwt-token-and/
+
+below is the steps in case link does not open
+Steps:
+
+In Api create a Auth/Login/Controller
+and add Following Code 
+
+       public class AuthenticateController : BaseController  
+       {  
+     
+         private IConfiguration _config;  
+  
+        //Constructor Injection to access all methods or simply DI(Dependency Injection)  
+     
+        public AuthenticateController(IConfiguration config)  
+        {  
+            _config = config;  
+        }  
+        
+  
+
+         // Generate Json Web Token Method  
+       
+        private string GenerateJSONWebToken(LoginModel userInfo)  
+        {  
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));  
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);  
+  
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],  
+              _config["Jwt:Issuer"],  
+              null,  
+              expires: DateTime.UtcNow.AddSeconds(25),
+              signingCredentials: credentials);  
+  
+            return new JwtSecurityTokenHandler().WriteToken(token);  
+        }  
+       
+
+            // Hardcoded the User authentication  
+
+       private async Task<LoginModel> AuthenticateUser(LoginModel login)  
+       {  
+           LoginModel user = null;
+
+       if (login.UserName != "Nakul")
+       {
+          return BadRequest("User Not Found");
+       }
+      if (login.Password != "12345")
+       {
+           return BadRequest("Wrong PAssword");
+       }
+
+        user = new LoginModel { UserName = "Nakul", Password = "123456" };
+        return user;
+       }  
+   
+
+
+        [AllowAnonymous]
+        [HttpPost(nameof(Login))]
+        public async Task<IActionResult> Login([FromBody] LoginModel data)
+        {
+        IActionResult response = Unauthorized();
+        var user = AuthenticateUser(data);
+        if (user.Value != null)
+        {
+          var tokenString = GenerateJSONWebToken(data);
+          response = Ok(new { Token = tokenString, Message = "Success" });
+          return response;
+        }
+       else
+       { 
+        return BadRequest("Login Failed");}
+       }
+
+
+  [HttpGet(nameof(Get))]
+  public async Task<IEnumerable<string>> Get()
+     {
+      var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+      return new string[] { accessToken };
+     }
+
+    }  
+}  
+
+
+   public class LoginModel
+   {
+       [Required]
+       public string UserName { get; set; }
+       [Required]
+       public required string Password { get; set; }
+   }
+
+
+
+//Add this in appSetting.Json. under Issuer, add your project URL.
+
+"Jwt": {  
+    "Key": "Thisismysecretkey",  
+    "Issuer": "https://localhost:44371"  
+  },  
+
+
+// In pRogram.cs Add
+
+var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
+var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+ .AddJwtBearer(options =>
+ {
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuer = true,
+         ValidateAudience = true,
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey = true,
+         ValidIssuer = jwtIssuer,
+         ValidAudience = jwtIssuer,
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+         ClockSkew = TimeSpan.Zero
+     };
+ });
+
+// Add this to enable Authorization using swagger
+
+builder.Services.AddSwaggerGen(swagger =>
+ {
+     // To Enable authorization using Swagger (JWT)  
+     swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+     {
+         Name = "Authorization",
+         Type = SecuritySchemeType.ApiKey,
+         Scheme = "Bearer",
+         BearerFormat = "JWT",
+         In = ParameterLocation.Header,
+         Description = "Add "Bearer" before Token",
+     });
+
+     swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            },
+                            new List<string> ()
+
+                    }
+    });
+ });
+
+
+//Protect api endpoints like this
+[Authorize]
+[Route("api/[controller]")]
+[ApiController]

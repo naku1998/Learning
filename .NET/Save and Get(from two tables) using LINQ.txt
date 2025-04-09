@@ -1,0 +1,53 @@
+
+
+//save Linq
+     public string SaveEventLog(EventLog log)
+        {
+            EventLog eventlog = new EventLog();
+            {
+                eventlog.EventID = log.EventID;
+                eventlog.EventDate = log.EventDate;
+                eventlog.VenueID = log.VenueID;
+                eventlog.Event = log.Event;
+                eventlog.UserID = log.UserID;
+                eventlog.MachineType = 1;
+                eventlog.MachineName = "RaspBerryPi";
+            };
+
+            _context.EventLogs.Add(eventlog);
+            _context.SaveChanges();
+            return ("Data Add Successfully");
+        }
+
+//getLinq
+
+              {
+            var EventLog = (from a in _context.EventLogs.Where(x=> x.MachineName == "RaspBerryPi")
+                            join c in _context.Users on a.UserID equals c.UserID into ps
+                            from p in ps 
+                            select new EventsLogModel
+                            {
+                                EventID = a.EventID,
+                                Event = a.Event,
+                                EventDate = a.EventDate,
+                                UserName = p.UserName,
+                                Venue = VenueName(a.VenueID)
+                            }).ToList();
+
+            return EventLog;
+        }
+
+        public static string VenueName(byte? venueNumber)
+        {
+            if (venueNumber == 1)
+            { return "A"; }
+            else if (venueNumber == 2)
+            { return "A/B"; }
+            else if (venueNumber == 3)
+            { return "B"; }
+            else if (venueNumber == 4)
+            { return "B/C"; }
+            else if (venueNumber == 5)
+            { return "C"; }
+            else { return ""; }
+        }

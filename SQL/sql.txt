@@ -1,0 +1,410 @@
+
+in this ext file TABLE NAME will be "BAG"  AND COLUMN NAME WILL BE "COL"
+
+
+
+
+
+// create table 
+
+CREATE TABLE sample1 
+(  
+ID int primary key identity(1,1),  //giving primary key that will automatically increase by 1
+FirstName varchar(255),  
+LastName varchar(255),  
+City varchar(255)  
+)
+
+// create table using another table
+
+CREATE TABLE table_name  
+AS (SELECT column1, column2,...   
+FROM old_table_name );  
+
+ 
+The following SQL creates a copy of the employee table.  
+CREATE TABLE EmployeeCopy AS  
+SELECT EmployeeID, FirstName, Email  
+FROM Employee;  
+
+////inset values in a table
+INSERT INTO TABLE_name(column,3 column6, column1, ...)
+VALUES (value1, value2, value3, ...);
+         or
+Insert into Table_name()
+values(VAL1, val2 ,Val3)    automatically insert values from start 
+
+///
+inserting multiple entries at same time.
+insert into emp values('rahul','sharma',24,'bd');
+insert into emp values('karan','jat',28,'design');
+insert into emp values('monika','thakur',33,'php');
+insert into emp values('ritika','sharma',25,'qa');
+insert into emp values('vinay','chaudhri',20,'marketing');
+insert into emp values('shivam','gupta',19,'php');
+insert into emp values('tanu','prasad',66,'.Net');
+insert into emp values('nirmal','garg',22,'managing');
+insert into emp values('raghave','kumar',24,'.net');
+insert into emp values('chirag','sharma',26,'bd');
+insert into emp values('kirti','ravish',28,'HR');
+insert into emp values('bhawna','bhaskar',19,'Enginear');
+insert into emp values('pooja','rathore,'21'php');
+insert into emp values('deepika','padukon',28,'ba');
+insert into emp values('neha','sharma',25,'NW');
+
+
+/// Alter table to add coulm/drop column/modify column type
+alter table BAG
+add colname int;
+add col2 varchar(20)
+
+//drop column
+alter table BAG
+drop column col/col2;
+
+// modify column datatype
+ALTER TABLE table_name
+ALTER COLUMN column_name datatype;
+
+//Alter column name
+
+EXEC sp_rename 'ConfigureFont.FontProperty', 'FontId';
+in this ConfigureFont is the table name and Font property is the old tablename abd FontId is new name 
+
+
+
+
+UPDATE 
+
+UPDATE BAG
+SET COLUMN = 'rakesh'
+WHERE id= 102 // if we omit where then all fields in column will update to rakesh
+
+// update multiple entries at same time
+
+update BAG
+set empid=102
+where firstname='rahul';
+update emp
+set empid=103
+where col1='karan';
+update emp
+set empid=104
+where COl2='sourav';
+update emp
+set empid=105
+where COlx='nikhil';
+update emp
+set empid=106
+where COly='null';
+
+//some more ex
+
+UPDATE BAG
+SET col1 = 'Alfred Schmidt', col2 = 'Frankfurt'
+WHERE CustomerID = 1;
+
+
+
+////DELETE VALUES FROM TABLE
+
+DELETE FROM BAG WHERE col ='nakul' and id='102'; 
+delete everything by //delete from bag 
+
+//DELETE ALL RECORDS
+delete from BAG where col='nakul'// delete the record (row) where atttibute value is nakul. 
+
+//drop table
+drop table children;
+
+//count values 
+select distinct name from Cemp
+
+
+
+
+// add primery key at creation time
+
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
+
+//giving multiple columns primary key
+CREATE TABLE sample2 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+      CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)//prCONSTRAINT Pk_person is an object
+);
+
+
+//// add primary key after creating table,  NOTE we can not give a null column  primary key.
+
+////make a null column to not null
+ALTER TABLE BAG
+ALTER COLUMN col
+ int/varchar(20) NOT NULL;
+
+ALTER TABLE emp
+ADD PRIMARY KEY (empid);  //empid should be not null
+
+
+
+//drop primary key from column
+ALTER TABLE Persons
+DROP CONSTRAINT PK_Person;//see this in key folder
+
+//making a foreign key in a table at Creation
+CREATE TABLE Orders (
+    OrderID int NOT NULL PRIMARY KEY,
+    OrderNumber int NOT NULL,
+    PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+);
+
+
+//Reset Primary Key
+Delete all records 1st
+DBCC CHECKIDENT ('BAg', RESEED, 0)
+
+//
+giving foreign key to multiple columns at creation
+
+CREATE TABLE Orders (
+    OrderID int NOT NULL PRIMARY KEY,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+);
+
+//FOreign key on alter table 
+
+ALTER TABLE Orders
+ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+// foreign key on multiple columns on Alter table
+ALTER TABLE Orders
+ADD CONSTRAINT FK_PersonOrder
+FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+// dropp a foreign key
+ALTER TABLE Orders
+DROP FOREIGN KEY FK_PersonOrder;
+
+//make a null column to not null
+ALTER TABLE BAG
+ALTER COLUMN col
+ int/varchar(20) NOT NULL;
+
+
+// distinct 
+select distinct Col from BAG//  common data will show once only
+
+/////////////////////OPERATORE////////////////////
+
+//AND 
+is used to search by multiple conditions in a row if both are true result will show
+eg.
+
+SELECT * FROM Customers
+WHERE Country='Germany' AND City='Berlin';
+will show only all columns in able where country is germany and city is berlin i.e CustomerID >1
+
+CustomerID	CustomerName	ContactName	City	PostalCode	Country
+1	         Alfreds       	Maria Anders	Berlin	12209	       Germany
+
+6  	       Blauer 	  Hanna Moos	   	  mexico                     Germany
+
+//OR
+used to do or bw data in a row 
+we can add multiple same search entries eg city =berlin or city =spain or city =xyz
+it will show all data in these categories
+
+//NOT
+SELECT * FROM Customers
+WHERE not Country='Germany' 
+//
+we can also use multiple operators
+SELECT * FROM Customers
+WHERE NOT Country='Germany' and NOT Country='Mexico'; //show except germany and mexico a
+           or
+SELECT * FROM Customers
+WHERE Country='Germany' AND (City='Berlin' OR City='München');
+
+//
+
+order by//sort in ascending order
+SELECT * FROM BAg
+ORDER BY col;
+
+//
+order by//sort in descending  order
+SELECT * FROM BAg
+ORDER BY col desc;
+
+//NULL/NOT NULL
+
+SELECT * // will show all fields which is null
+FROM table_name
+WHERE column_name IS NULL;
+
+SELECT *// will show all fields which is not not null
+FROM table_name
+WHERE column_name IS NOT NULL;
+
+
+//select top entries
+
+SELECT TOP 3 * FROM BAG;//prints top 3
+SELECT TOP 50 PERCENT * FROM BAG;//selects  top 50 PERCENT records
+select top 50 percent * from emp
+where age>25// using where
+
+//min and max
+SELECT Min(age) a
+FROM emp;
+SELECT max(age) a
+FROM emp;
+
+// count
+SELECT COUNT(col)
+FROM Products; // counts the no of fields in col column.
+// average
+SELECT AVG(age)
+FROM emp;// find the average
+//
+SELECT sum(age)
+FROM emp;// find the average
+
+//
+
+
+SELECT *
+FROM BAG
+WHERE col LIKE pattern;// used to filter fields in a columns
+
+LIKE    'a%'	Finds any values that start with "a"
+        '%a'	Finds any values that end with "a"
+       '%or%'	Finds any values that have "or" in any position
+      '_r%'	Finds any values that have "r" in the second position
+      'a_%'	Finds any values that start with "a" and are at least 2 characters in length
+     'a__%'	Finds any values that start with "a" and are at least 3 characters in length
+     'a%o'	Finds any values that start with "a" and ends with "o"
+
+
+//in operator 
+
+SELECT * FROM Customers
+WHERE Country IN ('Germany', 'France', 'UK');//prints every row where country is in these 3 
+// its shortcut for multiple or operators
+
+//BETWEEN OPERATOR
+
+used to search for values in bw
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20;
+
+//with like operator
+
+SELECT * FROM emp
+WHERE age not BETWEEN 20 AND 25 and firstname not like 'n%'
+
+//
+with in operator
+SELECT * FROM emp
+WHERE age not BETWEEN 20 AND 25 and empid in(101,102,106 )
+//
+with order by
+SELECT * FROM emp
+WHERE age between 23 and 29
+order by firstname
+// date
+SELECT * FROM Orders
+WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+
+// 
+SELECT age AS alias_name
+FROM BAG;
+
+//result
+
+alias_name
+23
+24
+28
+33
+25
+100
+
+JOINS
+joins is used to combine result from 2 or more tables,based on condition
+
+//
+INNER JOIN
+prints common data 
+select emp.* ,people.*                   // select BAG1.col,BAG2.col
+from emp inner join people               // from BAG1 inner join BAG2 
+on emp.firstname =people.FirstName       // on BAG1.col=BAG2.col
+
+//
+UNION
+its is used to merge multiple queries
+select firstname,age from Emp
+where age>23 // resultQ1 a,b,c,d,e,f
+intersect
+select firstname,age from people
+where age>40// resultQ2 a,y,q,b,t,c
+
+intersect will show common data of Q1 and Q2 i.e a,b,c
+
+
+
+//geting columns from multiple tables.
+select emp.firstname,people.FirstName
+from emp,people
+select count( distinct name) from Cemp 
+
+////////////////// JOIN vs //set operators(union,intersect..)
+In both  union and join there should be 1 same column in both tables,but  union will show data of same columns only but join can show every column 
+in the table
+eg we cannot use select * in union but we can in joins.
+join prints  seprate columns (containing filed values where condition is matched)of both tables.wheras union mixup field values in 1 column.
+
+
+///The following SQL sets a DEFAULT value for the "City" column when the "Persons" table is created:
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Sandnes'
+);
+
+To create a DEFAULT constraint on the "City" column when the table is already created, use the following SQL:
+
+ALTER TABLE Persons
+ADD CONSTRAINT df_City
+DEFAULT 'Sandnes' FOR City;
+
+// drop the default
+ALTER TABLE Persons
+ALTER COLUMN City DROP DEFAULT;
+
+
+// Duplicate Check
+IF Not EXISTS (SELECT 1 FROM ShowCue WHERE CueName = 'Cue 100')
+BEGIN
+    -- Record exists
+    PRINT 'Record Not exists.'
+END
+ELSE
+BEGIN
+    -- Record does not exist
+    PRINT 'Record exist.'
+END
+
+

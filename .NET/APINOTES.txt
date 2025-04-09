@@ -1,0 +1,147 @@
+select a template for Web API from Visual Studio Code with Docker Support or without its Optional  I Still do it.
+
+Add Layers :Modal Layer , Service Layer , Data Layer , Common Layer(O), any other layer is Optional/DependinguponNeeds.
+
+Add a modal in Modal Layer which Represent your Db Table with same column names and  datatype. class name could be Diff But Keep it same like Database. I am using diff for learning.
+
+  public class AAA
+  {
+      public int Id { get; set; }
+      public string Name { get; set; }
+      public int RollNumber { get; set; }
+      public string City { get; set; }
+      public string Sex { get; set; }
+      public Boolean IsDeleated { get; set; }
+  }
+
+All Layers Packages:
+
+Project Layer: [Automapper,Microsoft.AspNetCore.Authentication,JwtBearer,SwashBuckle.AspNetCore, SwashBuckle.AspNetCore.Swagger, NewtonSoft.Json].
+Data Layer:[Microsoft.EntityFramework.Core , Microsoft.EntityFramework.Core.Design , Microsoft.EntityFramework.Core.Design.SQLServer,  Microsoft.EntityFramework.Core.Tools].
+Modal Layer:[Microsoft.EFCore, Microsoft.EFCore.Relational, System.text.Json].
+Service Layer :[Automapper, MS.ASPNetCore.Cryptography,KeyDerivation,Newton Soft. Json , Rest Sharp]
+ 
+
+
+Add a Db Context File in Data Layer and inherit DbContext and add following code 
+
+Note: Entity Framework matches table names in the database with DbSet property name of Modal class in DbContext class, rather than with the names of the corresponding model classes
+.
+public DbSet<AAA> Student { get; set; } => Here AAA is Modal class and Student is DbSet property for AAA Modal class. Here it will AutoBind to Student table in Db because DbSet Property matches with tablename
+
+By default, Entity Framework follows a set of conventions, and one of these conventions is the naming convention for DbSet properties in your DbContext class. 
+The convention is to name DbSet properties in plural form and Pascal Case. Entity Framework then assumes that the table name in the database is the pluralized 
+version of the DbSet property name.
+
+For example, if you have a DbSet property named Students, Entity Framework will look for a table named Students in the database.
+However, you can override this convention by specifying the table name explicitly using data annotations or the fluent API in the OnModelCreating method (See below i changed the property to BBB),
+ if you need to deviate from the default behavior.
+
+
+   public class PracticeContext : DbContext
+   {
+       public PracticeContext(DbContextOptions<PracticeContext> options)
+     : base(options)
+       {
+       }
+
+       public DbSet<AAA> Student { get; set; } // Register the Data Modal
+      // public DbSet<AAA> BBB { get; set; } // Register the Data Modal
+
+
+[upper in 2nd commented Dbset Property Here We assign a custom Dbset Property BBB for modal class AAA below is the explict mapping to Student table.]
+
+   protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+     base.OnModelCreating(modelBuilder);
+
+  
+     modelBuilder.ApplyConfiguration(new StudentTableMap());
+    
+    }
+
+
+  public class StudentTableMap : IEntityTypeConfiguration<AAA>
+   {
+     public void Configure(EntityTypeBuilder<AAA> builder)
+      {
+         builder.ToTable("Student");
+         builder.HasKey(x => x.Id);
+      }
+  }
+  
+
+ 
+In Project Layer > Controllers Folder > Right Click > add a Controller > Controller with Read/Write Actions.
+
+suppose we made a coontroler named : StudentController
+
+On Top this is Default Route , We can Modify it likes this see below
+[Route("Student/[controller]")]
+[Route("Student")]
+[Route("")]
+
+There will be all CRUD controlers Get , getid,Post ,put ,delete etc we will have to
+modify them acc to our need like theit raturn type parameters etc
+
+After we add controler we call our service and from Service we call Repo.
+Repo has DbContext file which deals with Database.
+For now lets make an object of AppDbContext in controler using contructor
+
+  private readonly TempContext _context;
+
+ public StudentController(TempContext context)
+ {
+  
+     _context = context;
+ }
+
+Here is simple get Request :
+
+   [HttpGet]
+   public List<Student> Get()
+   {
+       return _context.Student.ToList();
+   }
+
+
+
+To Get Data we also need to define a connection string named "DefaultValue" in appSettings.json
+
+ "ConnectionStrings": 
+{
+  "DefaultValue": "Server=GL-NAKUL;Database=Student;Trusted_Connection=True;MultipleActiveResultSets=true; TrustServerCertificate=True"
+ },
+
+
+
+Next we inject this in program.cs to establish the connection when project boots.
+
+builder.Services.AddDbContext<TempContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultValue")));
+
+
+
+Now we can get data easily at swagger.
+
+
+
+//  Add new Table using Code First Approach.
+
+
+Yes, you can definitely use both approaches in the same project. The "Database First" and "Code First" approaches in Entity Framework are not mutually exclusive.
+
+If you originally started with a "Database First" approach and generated your models from an existing database, and now you want to add a new table to the database, you can still use "Code First" for that new table.
+
+Here's how you can do it:
+
+Create a new model class: Define a new class in your project that represents the structure of the new table you want to add.
+
+Define the DbContext: If you haven't already, create a class that inherits from DbContext and add a DbSet property for your new model class.
+
+Enable migrations: If you haven't already enabled migrations in your project, you'll need to do that. Run the Enable-Migrations command in the Package Manager Console.
+
+Add a migration: After enabling migrations, you can add a new migration using the Add-Migration command. This will generate the necessary code to update the database schema to include the new table.
+
+Apply the migration: Finally, you can apply the migration to update the database by running the Update-Database command.
+
+By following these steps, you can seamlessly integrate "Code First" for the new table while still maintaining the existing "Database First" approach for the rest of your project.

@@ -1,0 +1,152 @@
+// we are passing parameter  from  code  here we are not sending Primary key  value (AddWithValue(@Primarykey)) we are sending(Add(PrimaryKey)) which will only pass variable not value
+
+  var key = new SqlParameter("@EmployeeId", cReaderHelper.DbValue(EmployeeSave.Employee.EmployeeId))
+                {
+                    Direction = ParameterDirection.InputOutput,   // this show that @EmployeeId is passed as input but returns a value as output
+                };
+                cmd.Parameters.Add(key);
+
+
+
+
+ public cActionResult<bool> Save(SqlConnection DbConnection, SqlConnection ReadOnlyDbConnection, cEMP_EmployeeSave EmployeeSave, long ChangeUserId, SqlTransaction Trans = null)
+        {
+            const string storedProc = "EMP_EMPLOYEE_SAVE";
+            try
+            {
+               
+                SqlCommand cmd = cReaderHelper.BuildCommand(DbConnection, storedProc, Trans);
+                var key = new SqlParameter("@EmployeeId", cReaderHelper.DbValue(EmployeeSave.Employee.EmployeeId))
+                {
+                    Direction = ParameterDirection.InputOutput,
+                };
+                cmd.Parameters.Add(key);
+                cmd.Parameters.AddWithValue("@ActiveFlag", cReaderHelper.DbValue(EmployeeSave.Employee.ActiveFlag));
+                cmd.Parameters.AddWithValue("@Age", cReaderHelper.DbValue(EmployeeSave.Employee.Age));
+                cmd.Parameters.AddWithValue("@DeletedFlag", cReaderHelper.DbValue(EmployeeSave.Employee.DeletedFlag));
+                cmd.Parameters.AddWithValue("@Designation", cReaderHelper.DbValue(EmployeeSave.Employee.Designation));
+                cmd.Parameters.AddWithValue("@Experiance", cReaderHelper.DbValue(EmployeeSave.Employee.Experiance));
+                cmd.Parameters.AddWithValue("@Name", cReaderHelper.DbValue(EmployeeSave.Employee.Name));
+                cmd.Parameters.AddWithValue("@PreviousOrgnization", cReaderHelper.DbValue(EmployeeSave.Employee.PreviousOrgnization));
+                cmd.Parameters.AddWithValue("@department", cReaderHelper.DbValue(EmployeeSave.Employee.department));
+                cmd.Parameters.AddWithValue("@salary", cReaderHelper.DbValue(EmployeeSave.Employee.salary));
+                cmd.Parameters.AddWithValue("@JoiningDate", cReaderHelper.DbValue(EmployeeSave.Employee.JoiningDate));
+                cmd.ExecuteNonQuery();
+                if (EmployeeSave.Employee.EmployeeId == 0)
+                {
+                    EmployeeSave.Employee.EmployeeId = (long)cmd.Parameters["@EmployeeId"].Value;
+                    foreach (cEMP_AddressModel item in EmployeeSave.PermanentAddress)
+                    {
+                        if (EmployeeSave.PermanentAddress[0] == EmployeeSave.PermanentAddress[1])
+                        {
+                            cActionResult<bool> EmployeeSaveAction = SaveAddress(DbConnection,
+                                                                                ReadOnlyDbConnection,
+                                                                                Trans,
+                                                                                item,
+                                                                                EmployeeSave.Employee.EmployeeId,
+                                                                                ChangeUserId);
+
+                        }
+                        else 
+                        {
+                            cActionResult<bool> EmployeeSaveAction = SaveAddress(DbConnection,
+                                                                                   ReadOnlyDbConnection,
+                                                                                   Trans,
+                                                                                   item,
+                                                                                   EmployeeSave.Employee.EmployeeId,
+                                                                                   ChangeUserId);
+                        }
+                        continue;
+
+                    }
+
+                }
+               
+
+
+                return new cActionResult<bool>(true);
+
+            }
+            catch (Exception ex)
+            {
+                return new cActionResult<bool>(new GeneralException(storedProc, "", ex.Message));
+            }
+            finally
+            {
+                cReaderHelper.CloseConnection(DbConnection, Trans);
+            }
+
+
+
+        }
+
+        public cActionResult<bool> SaveAddress(SqlConnection DbConnection, SqlConnection ReadOnlyDbConnection, SqlTransaction Trans, cEMP_AddressModel Address, long EmployeeId, long ChangeUserId)
+        {
+            const string storedProc = "EMP_Addres_Save";
+           
+            try
+            {
+                
+                SqlCommand cmd = cReaderHelper.BuildCommand(DbConnection, storedProc, Trans);
+              
+                
+                    cmd.Parameters.AddWithValue("@EmployeeId", cReaderHelper.DbValue(EmployeeId));
+                    cmd.Parameters.AddWithValue("@AddressType", cReaderHelper.DbValue(Address.AddressType));
+                    cmd.Parameters.AddWithValue("@Village", cReaderHelper.DbValue(Address.Village));
+                    cmd.Parameters.AddWithValue("@PostalAddress", cReaderHelper.DbValue(Address.PostalAddress));
+                    cmd.Parameters.AddWithValue("@Tehsil", cReaderHelper.DbValue(Address.Tehsil));
+                    cmd.Parameters.AddWithValue("@District", cReaderHelper.DbValue(Address.District));
+                    cmd.Parameters.AddWithValue("@State", cReaderHelper.DbValue(Address.State));
+                    cmd.Parameters.AddWithValue("@Phoneno", cReaderHelper.DbValue(Address.Phoneno));
+                    cmd.Parameters.AddWithValue("@Email", cReaderHelper.DbValue(Address.Email));
+                    cmd.ExecuteNonQuery();
+                
+
+                return new cActionResult<bool>(true);
+            }
+            catch (Exception ex)
+            {
+                return new cActionResult<bool>(new GeneralException(storedProc, "", ex.Message));
+            }
+            finally
+            {
+                cReaderHelper.CloseConnection(DbConnection, Trans);
+            }
+        }
+
+
+
+
+
+
+Alter  procedure EMP_EMPLOYEE_SAVE    
+@ActiveFlag bit,    
+@Age varchar(50),    
+@DeletedFlag bit,    
+@Designation varchar(50),    
+@Experiance varchar(50),    
+@Name varchar(50),    
+@PreviousOrgnization varchar(50),    
+@department varchar(50),    
+@salary  varchar(50),    
+@JoiningDate datetime,     
+@EmployeeId bigint OUTPUT  
+as     
+Begin    
+Insert into EMP_Employee(Name,Designation,ActiveFlag,DeletedFlag,JoiningDate,Age,Experiance,department,salary,PreviousOrgnization)    
+values(    
+@Name,    
+@Designation,    
+@ActiveFlag,    
+@DeletedFlag,    
+@JoiningDate,    
+@Age,    
+@Experiance,    
+@department,    
+@salary,    
+@PreviousOrgnization     
+)    
+select @EmployeeId=SCOPE_IDENTITY();
+END
+
+// this will return value of @Employee id Latest

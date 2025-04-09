@@ -1,0 +1,60 @@
+create procedure SP1  
+as 
+begin                     
+select * from Sample
+select * from orders
+where FirstName='NAME3' 
+end                     
+
+exec SP1          
+
+
+//ALTER/drop store procedure
+alter procedure SP_name
+
+
+// STORED PROC WITH INPUT PARAMETERS (WE ARE GIVING VALUES AT CALLTIME)
+
+ create procedure FIND_NAME_AGE
+ @a varchar(25),          //similary to parameters in function(string @FirstName,int @Age)
+ @b int
+ as
+ Begin
+ Select * from Sample where FirstName=@a and Age=@b
+ end
+
+ exec FIND_NAME_AGE 'NAME2' , 23    // executing and giving parameters
+                 or
+ exec FIND_NAME_AGE @a=NAME2 ,@b=23.
+
+/// FIND Store procedure by QUERY
+sp_helptext SP1(STORE PROCEDURE NAME)
+
+//ENCRYPT STORE PROCEDURE  we wont be able to use SP_helptext query
+
+ create procedure FIND_NAME_AGE
+ @FirstName varchar(25),
+ @Age int
+with encryption
+ as
+ Begin
+ Select * from Sample where FirstName=@FirstName and Age=@Age
+ end
+
+///StoRE PROCEDURE WITH OUTput PARAMETERS means procedure 
+is returning a value like a function and it always return an integer value
+
+create procedure _COUNT
+@a int output                     // @a variable is returning value of (count (ID) from Sample )
+as begin
+select @a=count (ID) from Sample 
+end
+
+declare @b int             // we also need to save output in a variable @b is that variable and we are declring it
+execute _COUNT  @a= @b out       //puting value of @a in @b
+print @b
+
+
+//FIND STORE PROCEDURE
+sp_helptext 'NAME_OF_SP'
+

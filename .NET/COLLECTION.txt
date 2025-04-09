@@ -1,0 +1,103 @@
+//ARRAY(GENERIC,Mutable,Duplicates)
+1. int[] arr = new int[6]; 
+2. int[]arr= new int[] { 17, 23, 4, 59, 27, 36, 96, 9, 1, 3 };
+3. string[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+
+  
+4.//passing array to function 
+
+int[] arr1 = { 25, 10, 20, 15, 40, 50 };  
+
+static void printArray(int[] arr);
+
+//PARAMS
+ public void Show(params int[] val) // using params for variable length array  in function
+ program.Show(2,4,6,8,10,12,14); // Passing arguments of variable length  
+
+
+ARRAY FUNCTIONS:
+
+Array.Sort(arr);
+Array.Reverse(arr);
+string b = string.Empty;
+char[] d = a.ToCharArray();// converts string in array of characters.
+
+//copying 5 elements of arr in brr.
+int[] brr = new int[10];
+
+Array.Copy(arr, brr, 5);//copy 5 elemetnts of arr in brr
+
+//ARRAYLIST(NON GENERIC)
+
+ArrayList My_array = new ArrayList();//to use arraylist create object
+
+
+        My_array.Add("GeeksforGeeks");
+        My_array.Add(null);
+        My_array.Add('G');
+        My_array.Add(1234)
+
+
+// We created a list to store modal class parameters values,one by one we are adding all the values from Contact2(Class Object) into Emp_PerA New class Object. 
+List<cEMP_AddressModel> Emp_Address = new List<cEMP_AddressModel>();
+
+
+            cEMP_AddressModel EMP_PerA = null;
+            EMP_PerA = new cEMP_AddressModel()
+            {
+                 AddressId= copycontact2.AddressId,
+                 EmployeeId= copycontact2.EmployeeId,
+                 AddressType= copycontact2.AddressType,
+                 Village = copycontact2.Village,
+                 PostalAddress=  copycontact2.PostalAddress,
+                 Tehsil= copycontact2.Tehsil,
+                 District=copycontact2.District,
+                 State=copycontact2.State,
+                 Phoneno= copycontact2.Phoneno,
+                 Email= copycontact2.Email
+               
+
+            };
+
+one by one adding new object EditContact(same class  other object ) into other EMP_CurA(Same class other object)
+            cEMP_AddressModel EMP_CurA = null;
+            EMP_CurA = new cEMP_AddressModel()
+            {
+                AddressId = EditContact.AddressId,
+                EmployeeId = EditContact.EmployeeId,
+                AddressType = EditContact.AddressType,
+                Village = EditContact.Village,
+                PostalAddress = EditContact.PostalAddress,
+                Tehsil = EditContact.Tehsil,
+                District = EditContact.District,
+                State = EditContact.State,
+                Phoneno = EditContact.Phoneno,
+                Email = EditContact.Email
+
+
+            };
+
+// adding values of 2 objects in  single List.This List will be passed in cEMP_EmployeeSave(which contains modal class referances)
+ public class cEMP_EmployeeSave
+    {
+
+       public cEMP_EmployeeModel Employee { get; set; }
+
+       
+
+        //public cEMP_AddressModel Address { get; set; }
+
+        public List<cEMP_AddressModel> PermanentAddress { get; set; }
+
+
+
+    } 
+  Emp_Address.Add(EMP_PerA);   
+  Emp_Address.Add(EMP_CurA);
+
+
+
+
+            
+          
+           

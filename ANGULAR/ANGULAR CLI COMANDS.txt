@@ -1,0 +1,131 @@
+//instal npm
+
+npm install -g @angular/cli   
+
+               
+
+//make new app
+
+ng new my-app
+
+// install bootstrap and jquery
+
+npm install bootstrap
+npm  install jquery
+
+ "styles": [
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          },
+
+//to run local in browser
+
+ng serve --open
+
+// to start
+ng start
+
+
+Window ng serve command not working :
+
+I solved my problem by running below command
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+//generate new component
+ng generate component xyz...
+
+
+//in tsconfig.json=> compiler options
+
+
+ "strictPropertyInitialization":false,
+
+
+//using ng for to print a list of items using ng for.
+
+
+
+.htll=>
+
+<ul *ngFor="let todo of todos">
+    <li>{{todo.sno}}- {{todo.title}}- {{todo.desc}}- {{todo.active}}</li>
+
+</ul>
+
+
+//.ts=>
+ todos:Todo[];
+  constructor() {
+
+    this.todos=[
+      {
+        sno:1,
+        title:"Title1",
+        desc:"Description1",
+        active: true
+      },
+      {
+        sno:2,
+        title:"Title2",
+        desc:"Description2",
+        active: true
+      },
+      {
+        sno:3,
+        title:"Title3",
+        desc:"Description3",
+        active: true
+      },
+      {
+        sno:4,
+        title:"Title4",
+        desc:"Description4",
+        active: true
+      }
+
+    ]
+   }
+
+
+// passing    "todo" argument in "to-do-item" component
+
+<ul *ngFor="let todo of todos">
+
+    <app-to-do-item [todoitem]="todo"></app-to-do-item>
+
+</ul>
+
+
+//accepting arguments
+
+import { Component, OnInit ,Input} from '@angular/core';
+
+
+
+export class ToDoItemComponent implements OnInit {
+
+  @Input() todoitem: Todo;// we are accepting argument from Todolist component
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+
+// to generate service
+ng g service xyz
+
+
+
+//how to enable cores
+https://youtu.be/Sd0pnkQIvc8 follow this link.
+
+
+
