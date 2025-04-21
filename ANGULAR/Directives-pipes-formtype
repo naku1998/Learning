@@ -1,0 +1,15 @@
+# Directive
+In Angular, directives are classes that extend HTML elements with new behaviors or functionalities, allowing you to manipulate the DOM, control rendering, and encapsulate reusable logic. They come in two main types: structural and attribute directives. 
+Here's a more detailed breakdown:
+Types of Directives:
+Structural Directives:
+These directives modify the DOM layout by adding or removing elements. 
+Examples: *ngIf (conditionally renders elements), *ngFor (iterates over arrays), *ngSwitch (renders different views based on a condition). 
+Attribute Directives:
+These directives modify the appearance or behavior of existing elements, attributes, properties, or components. 
+Examples: ngClass (adds and removes CSS classes), ngStyle (applies inline styles), ngModel (two-way data binding). 
+
+# Pipes
+Pipes are a special operator in Angular template expressions that allows you to transform data declaratively in your template. Pipes let you declare a transformation function once and then use that transformation across multiple templates. Angular pipes use the vertical bar character (|)
+
+ 
