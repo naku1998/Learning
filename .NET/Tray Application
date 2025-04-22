@@ -1,0 +1,81 @@
+# Client’s Key Requirements Recap:
+
+    Requirement	Why EXE or MSI?
+    ✅ Bundle multiple MSI/EXEs into a single installer	              🔹 EXE is best for bundling
+    ✅ Custom branding (logo on installer and app)	                  🔹 EXE offers full UI customization
+    ✅ Acts as a controller/master for other apps	                  🔸 App design (separate from installer)
+    ✅ Digitally signed	                                              ✅ Both MSI & EXE support signing
+    ✅ Password-protection to prevent unauthorized unloading	          🔹 Easier to implement in EXE
+    ✅ Logging capability	                                          🔸 App logic (not installer-specific)
+    ✅ Run as Windows Service, monitor other services	              🔸 App logic
+    ✅ Show tray icon and UI on click	                              🔸 Desktop app feature
+    ✅ Future expansion to macOS/Linux	                              🔸 Separate solution for each OS
+    ✅ Needs NDA and secure delivery	                                  🔸 Business process
+      
+# Why a Tray Application is Needed
+    They mentioned:
+
+    "The agent status should show up in the taskbar."
+
+    In Windows, when an app needs to run in the background but still allow users to see its status, interact with it, or access logs/settings, it's common to:
+
+    Run the core logic as a Windows Service (background, no UI).
+
+    Pair it with a tray application (small UI that lives in the system tray).
+
+# 1. WiX Toolset (Windows Installer XML)
+    💡 What it is:
+    WiX is a powerful open-source toolset that lets you create Windows Installer (.msi) packages using XML files.
+
+    🧭 When to use it:
+    When you want to bundle your app into an installer (.msi).
+
+    If you want to install multiple EXEs/MSIs together (as your client needs).
+
+    When you want to control registry, services, start menu, and custom install logic.
+
+    For enterprise deployments or signed packages.
+
+    ✅ Use cases for your client:
+    Create a single MSI that installs the tray app and the other repackaged apps.
+
+    Set up the tray app to auto-start, install as service, and install dependencies.
+
+    Can show custom UI screens like EULA, branding, etc.
+
+# signtool.exe is a command-line tool provided by Microsoft that is used to digitally sign executables, DLLs, or installers with a certificate.
+
+    ✅ Why sign an app?
+    Shows "Verified Publisher" instead of "Unknown Publisher" in Windows.
+
+    Prevents tampering — Windows verifies digital signature integrity.
+
+    Required for bypassing SmartScreen warnings.
+
+    Needed when distributing software via web or internal enterprise tools.
+
+    🧭 When to use it:
+    Before releasing your .exe or .msi to clients.
+
+    Especially important if you're a cybersecurity company (which your client is).
+
+
+# Here's a step-by-step guide to help you create a WinForms tray application:
+    1. Set Up Your WinForms Project
+    Open Visual Studio.
+
+    Click on "Create a new project".
+
+    In the search box, type "Windows Forms App".
+
+    Choose:
+
+    "Windows Forms App (.NET Framework)" if you're targeting .NET Framework.
+
+    Or "Windows Forms App (.NET)" (recommended) if you're targeting .NET 6/7/8.
+
+    Click Next.
+
+    Name your project (e.g., MyTrayApp), select a location, and click Create.
+
+    Visual Studio will generate the base project for you with a ready-to-edit Form1.

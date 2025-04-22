@@ -1,0 +1,93 @@
+# What is NLog?
+    NLog is a powerful and flexible logging library for .NET that’s used to log messages to various outputs like files, databases, console, etc.
+
+    NLog helps track and record events, errors, and messages while your application runs.
+
+    It supports log levels like Trace, Debug, Info, Warn, Error, Fatal.
+
+    You define where logs go and how they are formatted via a config file or code.
+
+✅ How to Use NLog (Simple Setup for Logging to a File)
+
+   # Step 1: Install NLog Packages
+    Run this in your terminal or NuGet Package Manager Console:
+
+    dotnet add package NLog
+    dotnet add package NLog.Config
+    dotnet add package NLog.Schema
+
+   # Step 2: NLog Config File (NLog.config) and copy below : Here's a basic config that logs to a file:
+   # Make sure the file’s Copy to Output Directory property is set to: Copy if newer.
+        
+      <?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+        <!-- Define log targets -->
+        <targets>
+            <target name="logfile" xsi:type="File" fileName="app.log"
+                    layout="${longdate} | ${level:uppercase=true} | ${message}" />
+        </targets>
+
+        <!-- Define logging rules -->
+        <rules>
+            <logger name="*" minlevel="Info" writeTo="logfile" />
+        </rules>
+        </nlog>
+
+   # Step 3: Use NLog in Code
+        using NLog;
+
+            public partial class Form1 : Form
+            {
+                private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+                public Form1()
+                {
+                    InitializeComponent();
+
+                    logger.Info("Application started");
+                }
+
+                private void button1_Click(object sender, EventArgs e)
+                {
+                    logger.Debug("Button clicked");
+                    try
+                    {
+                        // Some code...
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error(ex, "Something went wrong");
+                    }
+                }
+            }
+
+   # Your Log File:Will be created in your build/output folder (e.g., bin\Debug\net6.0-windows\app.log)
+
+
+   # You Can Now Log:
+        logger.Trace("trace message")
+
+        logger.Debug("debug message")
+
+        logger.Info("info message")
+
+        logger.Warn("warn message")
+
+        logger.Error("error message")
+
+        logger.Fatal("fatal error")
+
+   # Each log message has a level (Trace < Debug < Info < Warn < Error < Fatal).
+   # The logger will only record messages at or above the level you set in your configuration.
+    if your NLog.config looks like this:It means:Info, Warn, Error, and Fatal messages will be saved ✅Debug and Trace will be ignored ❌
+    
+   <rules>
+      <logger name="*" minlevel="Info" writeTo="file" />
+   </rules>
+
+
+ 
+
+        
