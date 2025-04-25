@@ -1,0 +1,54 @@
+# ng content
+
+<ng-content> is a special Angular tag used to enable content projection — i.e., inserting content from a parent component into a child component’s template.
+
+It’s kind of like saying:
+
+“Hey parent! Send me some HTML and I’ll display it right here.”
+
+# content projection
+Content Projection is the process where Angular lets you pass HTML content (like buttons, text, images, or even components) from the parent component into a child component using <ng-content>.
+
+# Tutorial
+[text](https://youtu.be/b71prZA8sQ0?si=xiOsPk91lgb-xVUj)
+
+
+# <ParentComponent>
+...
+<my-card>
+  <p class="header">Electronics Items</p>
+  <p class="header">see More</p>
+</my-card>
+
+// here we are Resuing the component with diff Html
+<my-card>
+  <p class="header">Men's T Shirt</p>
+  <p class="header">Add To Cart</p>
+</my-card>
+...
+</ParentComponent>
+
+
+# <ChildComponent>
+...
+<div class="card">
+<ng-content selector=".header"></ng-content>
+  <h2>Card Body</h2>
+  <ng-content selector=".footer"></ng-content>
+</div>
+...
+</ChildComponent>
+
+# OutPut
+
+<div class="card">
+  <p class="header">Electronics Items</p>
+  <h2>Card Body</h2>
+  <p class="header">see More</p>
+</div>
+
+<div class="card">
+  <p class="header">Men's T Shirt</p>
+  <h2>Card Body</h2>
+  <p class="header">Add To Cart</p>
+</div>

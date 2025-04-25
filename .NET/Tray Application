@@ -61,21 +61,55 @@
 
 
 # Here's a step-by-step guide to help you create a WinForms tray application:
-    1. Set Up Your WinForms Project
-    Open Visual Studio.
+   # 1. Set Up Your WinForms Project
 
-    Click on "Create a new project".
+        Open Visual Studio.
 
-    In the search box, type "Windows Forms App".
+        Click on "Create a new project".
 
-    Choose:
+        In the search box, type "Windows Forms App".
 
-    "Windows Forms App (.NET Framework)" if you're targeting .NET Framework.
+        Choose:
 
-    Or "Windows Forms App (.NET)" (recommended) if you're targeting .NET 6/7/8.
+        "Windows Forms App (.NET Framework)" if you're targeting .NET Framework.
 
-    Click Next.
 
-    Name your project (e.g., MyTrayApp), select a location, and click Create.
+        Click Next.
 
-    Visual Studio will generate the base project for you with a ready-to-edit Form1.
+        Name your project (e.g., MyTrayApp), select a location, and click Create.
+
+        Visual Studio will generate the base project for you with a ready-to-edit Form1.
+   
+   # 2. Add the NotifyIcon to the System Tray
+
+        To add a tray icon, you'll use the NotifyIcon control. You can add this in your Form class.
+
+        Open Form1.cs (or the form where you want the tray icon).
+
+        Inside the Form1 class, declare and initialize a NotifyIcon. 
+       # see Form1 class in the project 
+
+   # 3. Handle Application Startup
+   
+    Make sure the application starts and minimizes to the tray automatically when it runs.
+    Go to your Program.cs and modify the Main() method to show the tray icon immediately:
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Form1 form = new Form1();
+            form.Hide();  // Start the app minimized to the tray
+            Application.Run();
+        }
+
+
+  # 4. Add Logging (Optional)
+
+  # 5. Compile and Test
+
+  # 6. Package Your App
+        You can package your app using WiX Toolset or other tools like Inno Setup or Advanced Installer to create an installer.
+
+     
+  # 7. Signing the Application (Optional for Client)

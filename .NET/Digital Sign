@@ -1,0 +1,4 @@
+# open powershell in admin mode and un this comand:
+# note - change the pass
+$cert = New-SelfSignedCertificate -Type CodeSigningCert -Subject "CN=MyTestCert" -CertStoreLocation "Cert:\CurrentUser\My"
+Export-PfxCertificate -Cert $cert -FilePath "C:\MyCert.pfx" -Password (ConvertTo-SecureString -String "yourpassword" -Force -AsPlainText)

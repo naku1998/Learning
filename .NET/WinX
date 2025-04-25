@@ -1,0 +1,26 @@
+# Step 1: Install WiX Toolset
+
+    Download and install WiX Toolset from the WiX website.
+    WiX Toolset is a collection of tools that allows you to create Windows Installer (MSI) packages.
+
+    Install WiX extension for Visual Studio (if you're using Visual Studio):
+
+    Go to Extensions > Manage Extensions.
+
+    Search for WiX Toolset Visual Studio Extension and install it.
+
+
+
+   WiX supports adding .dll or project outputs as references (in .csproj format), not .exe files directly.BUT:
+
+        You can still bundle your compiled .exe output and install it via WiX — you just have to manually include the file in your WiX setup.
+      # Inside the <Directory> tag, you can manually add your .exe like this:
+        <Directory Id="TARGETDIR" Name="SourceDir">
+        <Directory Id="ProgramFilesFolder">
+            <Directory Id="INSTALLFOLDER" Name="MyTrayApp">
+            <Component Id="MyTrayAppExe" Guid="PUT-GUID-HERE">
+                <File Source="..\MyTrayApp\bin\Release\net8.0-windows\MyTrayApp.exe" />
+            </Component>
+            </Directory>
+        </Directory>
+        </Directory>

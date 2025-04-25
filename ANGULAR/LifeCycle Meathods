@@ -1,0 +1,58 @@
+-                                                    🟠 Before UI is Rendered (Component is being set up)
+
+# ngOnChanges() 
+called when there is change in Input parameter
+If the component has @Input() properties, this runs first.
+Purpose: Update based on incoming data.
+
+# ngOnInit()
+called when Component is initialized and has stared rendering on UI
+Good place to prepare data (e.g., API calls, default values) before rendering.
+UI Not Rendered Yet.
+
+# ngDoCheck()
+If a change happens in the parent, both parent and child ngDoCheck() will run.
+If a change happens in the child, parent ngDoCheck() will still run because Angular runs change detection top-down.
+Useful if Angular’s default check isn’t enough.
+
+-                                                      🟢 After UI is Rendered (DOM is now visible)
+
+# ngAfterContentInit()
+
+# When is ngAfterContentInit() called?
+
+It is called after the projected content has been initialized.
+
+At this point:
+
+You can access the content with @ContentChild or @ContentChildren.
+
+The projected content is available in the DOM, but Angular hasn’t run change detection on it yet
+
+Hook	                           Triggered When	                                                                       Useful For
+ngAfterContentInit()	           After Angular inserts content via <ng-content>	                                       Accessing projected content with @ContentChild
+
+# ngAfterContentChecked()
+
+# So it's called: Immediately after ngAfterContentInit() — the first time.
+
+# Every time:
+
+A change is detected in any input-bound data
+
+The parent component updates
+
+Events (click, input, etc.) trigger change detection
+
+Timers (setTimeout, setInterval)
+
+Manual changes (ChangeDetectorRef.detectChanges())
+
+
+
+🔴 When Component is Removed / Destroyed
+ngOnDestroy()
+
+Called before Angular removes the component from the DOM.
+
+Use this to cleanup (unsubscribe, clear timers, etc.)
