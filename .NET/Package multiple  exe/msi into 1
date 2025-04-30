@@ -73,7 +73,6 @@
 
         "Windows Forms App (.NET Framework)" if you're targeting .NET Framework.
 
-
         Click Next.
 
         Name your project (e.g., MyTrayApp), select a location, and click Create.
@@ -81,14 +80,8 @@
         Visual Studio will generate the base project for you with a ready-to-edit Form1.
    
    # 2. Add the NotifyIcon to the System Tray
-
-        To add a tray icon, you'll use the NotifyIcon control. You can add this in your Form class.
-
-        Open Form1.cs (or the form where you want the tray icon).
-
-        Inside the Form1 class, declare and initialize a NotifyIcon. 
-       # see Form1 class in the project 
-
+     download a tray icon from google and move it to a folder in project root directory
+     such as Resources
    # 3. Handle Application Startup
    
     Make sure the application starts and minimizes to the tray automatically when it runs.
@@ -113,3 +106,5 @@
 
      
   # 7. Signing the Application (Optional for Client)
+
+  

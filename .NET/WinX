@@ -5,10 +5,8 @@
 
     Install WiX extension for Visual Studio (if you're using Visual Studio):
 
-    Go to Extensions > Manage Extensions.
-
-    Search for WiX Toolset Visual Studio Extension and install it.
-
+    By default WiX is not included in Visual Studio, so you need to install the WiX Toolset Visual Studio Extension.
+    search like this wiX toolset visual studio extension 2022/2019.. on google then Download and install.
 
 
    WiX supports adding .dll or project outputs as references (in .csproj format), not .exe files directly.BUT:
