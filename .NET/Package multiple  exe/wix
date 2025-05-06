@@ -1,0 +1,73 @@
+# Step 1: Install WiX Toolset
+
+    Download and install WiX Toolset from the WiX website.
+    https://docs.firegiant.com/wix/wix3/
+    
+    WiX Toolset is a collection of tools that allows you to create Windows Installer (MSI) packages.
+
+    Install WiX extension for Visual Studio (if you're using Visual Studio):
+
+    By default WiX is not included in Visual Studio, so you need to install the WiX Toolset Visual Studio Extension.
+    search like this wiX toolset visual studio extension 2022/2019.. on google then Download and install.
+
+
+   WiX supports adding .dll or project outputs as references (in .csproj format), not .exe files directly.BUT:
+
+        You can still bundle your compiled .exe output and install it via WiX — you just have to manually include the file in your WiX setup.
+      # Inside the <Directory> tag, you can manually add your .exe like this:
+        <Directory Id="TARGETDIR" Name="SourceDir">
+        <Directory Id="ProgramFilesFolder">
+            <Directory Id="INSTALLFOLDER" Name="MyTrayApp">
+            <Component Id="MyTrayAppExe" Guid="PUT-GUID-HERE">
+                <File Source="..\MyTrayApp\bin\Release\net8.0-windows\MyTrayApp.exe" />
+            </Component>
+            </Directory>
+        </Directory>
+        </Directory>
+
+
+# Important
+✅ WiX Burn
+
+Burn is a part of WiX Toolset. It’s the bootstrapper engine used to create a single .exe installer that can install multiple MSIs, EXEs, or other packages in a chain.
+
+So:
+
+Burn is not separate — it's built into the WiX Toolset.
+
+You use Burn when you create a special WiX project using a <Bundle> in a .wxs file.
+
+# The output is an .exe, not an .msi.
+
+✔ Summary
+Tool	Output	Use
+WiX MSI Project	.msi	A single app installer
+WiX Burn (Bundle)	.exe	A combined installer for many apps (EXE, MSI, etc.)
+
+Got it — if your client wants a single .msi file, Burn will not work, because Burn only produces .exe bootstrapper installers, not .msi.
+
+⚠ Why This Is Important:
+# WiX cannot bundle multiple .msi files into a single .msi because Windows Installer prohibits nested MSI execution (this is a Windows Installer limitation, not a WiX one).
+
+That means:
+
+You can’t run MSI 1, MSI 2, and install other EXEs from inside another MSI.
+
+Only Burn (.exe) can do that chaining and sequencing.
+
+# Important : The exe should be a installer
+Thanks! Since you're using WiX Burn (Bundle.wxs), and your Tray App is a plain EXE (not an installer), here's what you need to do:
+
+❗ Problem: You're bundling a raw EXE file
+Your current entry:
+
+xml
+Copy
+Edit
+<ExePackage Id="TrayApp"
+    SourceFile="C:\...\Tray WPF.exe"
+    InstallCommand="/quiet"
+    Vital="yes" />
+This expects that the EXE is an installer (e.g., an InnoSetup EXE or self-contained MSI bootstrapper). But your Tray WPF.exe is just your app, so this won't work — WiX tries to "run" it silently, which doesn't make sense for a tray app.
+
+✅ ✅ Solution: Package the Tray App into an MSI first, then reference it in the Bundle

@@ -1,21 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Nakul\\LEARNINGS\\Tray WPF\\",
+  "WorkspaceRootPath": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|c:\\nakul\\learnings\\tray wpf\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|c:\\nakul\\learnings\\tray wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|C:\\Nakul\\LEARNINGS\\Tray WPF\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|C:\\Nakul\\LEARNINGS\\Tray WPF\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|c:\\nakul\\learnings\\learnings\\learning\\tray wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{843922AD-ED47-40F9-9763-76B01B9A1D6F}|Tray WPF.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,51 +42,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Tray WPF\\App.config",
-              "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "C:\\Nakul\\LEARNINGS\\Tray WPF\\App.config",
-              "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-05-02T10:18:06.289Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Tray WPF\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Nakul\\LEARNINGS\\Tray WPF\\MainWindow.xaml",
+              "ToolTip": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-01T10:29:49.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T10:29:49.259Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Tray WPF\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Nakul\\LEARNINGS\\Tray WPF\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAkwI8AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T07:42:31.237Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Tray WPF\\App.xaml.cs",
+              "DocumentMoniker": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Nakul\\LEARNINGS\\Tray WPF\\App.xaml.cs",
+              "ToolTip": "C:\\Nakul\\LEARNINGS\\Learnings\\Learning\\Tray WPF\\App.xaml.cs",
               "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwB0AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T05:02:50.858Z",
               "EditorCaption": ""

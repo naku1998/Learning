@@ -149,7 +149,7 @@ namespace Tray_WPF
 
         private System.Drawing.Icon LoadIcon(string iconName)
         {
-            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", iconName);
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, iconName);
             return new System.Drawing.Icon(path);
         }
 

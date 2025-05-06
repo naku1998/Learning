@@ -27,7 +27,7 @@ namespace Tray_WPF
         {
             _trayIcon = new Forms.NotifyIcon
             {
-                Icon = new Icon("Resources/green.ico"),
+                Icon = new Icon("green.ico"),
                 Visible = true,
                 Text = "Service Monitor",
                 ContextMenuStrip = new Forms.ContextMenuStrip()
