@@ -29,7 +29,7 @@ namespace Tray_WPF
             {
                 Icon = new Icon("green.ico"),
                 Visible = true,
-                Text = "Service Monitor",
+                Text = "All Services are running",
                 ContextMenuStrip = new Forms.ContextMenuStrip()
             };
 

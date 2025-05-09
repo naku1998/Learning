@@ -71,3 +71,15 @@ Edit
 This expects that the EXE is an installer (e.g., an InnoSetup EXE or self-contained MSI bootstrapper). But your Tray WPF.exe is just your app, so this won't work — WiX tries to "run" it silently, which doesn't make sense for a tray app.
 
 ✅ ✅ Solution: Package the Tray App into an MSI first, then reference it in the Bundle
+
+# Important If a service is already runnign master installer may throw an error that it is already insatlled so make sure it is not runninf
+ # check if sysmon is running:
+    sc query sysmon64
+
+# if not running and u want to run manually:
+    net start sysmon64
+
+# uninstall:
+"C:\Users\Akshay\Downloads\3C-MDR Agent Files Akshay\3C-MDR Agent Files Akshay\Sysmon64.exe" -u force
+
+ ![alt text](image.png)

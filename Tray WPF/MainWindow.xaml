@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Tray_WPF"
         mc:Ignorable="d"
         Title="Service Status" Height="350" Width="400">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    
     <StackPanel Margin="20">
         <TextBlock Text="Service Status" FontWeight="Bold" FontSize="18" Margin="0,0,0,10" />
 
@@ -22,11 +27,25 @@
         </ItemsControl>
 
         <!-- Service List -->
-        <ListView x:Name="ServiceList" Margin="0,20,0,0" Height="100">
+        <ListView x:Name="ServiceList"  Margin="0,20,0,0" Height="120"  ItemsSource="{Binding serviceDisplayItems}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Service Name" Width="200" DisplayMemberBinding="{Binding DisplayName}" />
+                    <GridViewColumn Header="Service Name" Width="150" DisplayMemberBinding="{Binding DisplayName}" />
                     <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding IsRunning}" />
+                    <GridViewColumn Header="Action" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Start"
+                                Click="StartServiceButton_Click"
+                                Tag="{Binding}"
+                                Padding="4,2"
+                                FontSize="12"
+                                Background="LightGreen"
+                                BorderBrush="DarkGreen"
+                                Visibility="{Binding Stopped, Converter={StaticResource BoolToVis}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
