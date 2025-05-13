@@ -1,5 +1,8 @@
 ﻿
+using Serilog;
+using System;
 using System.Drawing;
+using System.IO;
 using System.Windows;
 using Forms = System.Windows.Forms;
 
@@ -15,6 +18,7 @@ namespace Tray_WPF
 
         private MainWindow mainWindow;
 
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -22,6 +26,8 @@ namespace Tray_WPF
             mainWindow = new MainWindow();
             mainWindow.Hide(); // Start hidden
             SetupTrayIcon();
+            serilog();
+            Log.Information("Application started.");
         }
         private void SetupTrayIcon()
         {
@@ -58,6 +64,30 @@ namespace Tray_WPF
             _trayIcon.Visible = false;
             mainWindow.Close();
             Shutdown();
+            Log.Information("Application exited.");
+            Log.CloseAndFlush();
+        }
+
+        public void serilog()
+        {
+
+            // Define folder and path
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string logFolder = Path.Combine(desktopPath, "MyAppLogs");
+
+            string logPath = Path.Combine(logFolder, "log-.txt");
+
+            // Ensure directory exists
+            Directory.CreateDirectory(logFolder);
+            Log.Logger = new LoggerConfiguration()
+                           .MinimumLevel.Debug()
+                           .WriteTo.File(
+                               path: logPath,
+                               rollingInterval: RollingInterval.Day,
+                               outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}"
+                           )
+                           .CreateLogger();
+
         }
     }
 }

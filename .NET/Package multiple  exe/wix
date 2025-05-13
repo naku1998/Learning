@@ -46,6 +46,22 @@ WiX Burn (Bundle)	.exe	A combined installer for many apps (EXE, MSI, etc.)
 
 Got it — if your client wants a single .msi file, Burn will not work, because Burn only produces .exe bootstrapper installers, not .msi.
 
+# which wiX Template to choose
+
+# WIx setup Project 
+A Setup Project generates a single .msi (used for installing one app).
+
+# wiX Bootstraper project 
+A Bootstrapper Project creates a .exe installer (called a bundle) that can:
+
+Chain together one or more .msi/.exe installers
+
+Include a custom UI, like your password prompt
+
+Run prerequisite checks or logic before installation starts
+
+
+
 ⚠ Why This Is Important:
 # WiX cannot bundle multiple .msi files into a single .msi because Windows Installer prohibits nested MSI execution (this is a Windows Installer limitation, not a WiX one).
 
@@ -74,7 +90,8 @@ This expects that the EXE is an installer (e.g., an InnoSetup EXE or self-contai
 
 # Important If a service is already runnign master installer may throw an error that it is already insatlled so make sure it is not runninf
  # check if sysmon is running:
-    sc query sysmon64
+    sc query Sysmon64
+    Sysmon64.exe -u force
 
 # if not running and u want to run manually:
     net start sysmon64

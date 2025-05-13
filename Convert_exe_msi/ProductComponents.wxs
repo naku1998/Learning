@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="MasterApplication">
+					<Component Id="MainExecutable" Guid="ef50ffc1-0505-4bb0-8e6f-566b78324c7c">
+						<File Id="TrayExe" Source="Tray WPF.exe" KeyPath="yes" />
+						<File Source="Tray WPF.exe.config" />
+						<File Source="Tray WPF.pdb" />
+						<File Source="green.ico" />
+						<File Source="red.ico" />
+
+						<!-- Serilog dependencies -->
+						<File Source="Serilog.dll" />
+						<File Source="Serilog.Sinks.File.dll" />
+
+						<!-- System.* dependencies -->
+						<File Source="System.Buffers.dll" />
+						<File Source="System.Diagnostics.DiagnosticSource.dll" />
+						<File Source="System.Memory.dll" />
+						<File Source="System.Numerics.Vectors.dll" />
+						<File Source="System.Threading.Channels.dll" />
+						<File Source="System.Threading.Tasks.Extensions.dll" />
+
+					</Component>
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents">
+			<ComponentRef Id="MainExecutable" />
+		</ComponentGroup>
+	</Fragment>
+
+</Wix>
