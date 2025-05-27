@@ -88,7 +88,7 @@ This expects that the EXE is an installer (e.g., an InnoSetup EXE or self-contai
 
 ✅ ✅ Solution: Package the Tray App into an MSI first, then reference it in the Bundle
 
-# Important If a service is already runnign master installer may throw an error that it is already insatlled so make sure it is not runninf
+# Important If] a service is already runnign master installer may throw an error that it is already insatlled so make sure it is not runninf
  # check if sysmon is running:
     sc query Sysmon64
     Sysmon64.exe -u force
