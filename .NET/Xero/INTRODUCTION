@@ -1,0 +1,96 @@
+
+ It is a Account Managment Application like QuickBooks.
+
+ 🧾 Invoice vs Bill – Easy Terms
+🔹 Term	Invoice	Bill
+
+Who sends it?	        A seller or service provider	    A buyer or business receiving it
+Who receives it?	    A customer or client	            The business owner (you)
+Purpose	To request      payment for goods/services	        To record money you owe to someone else
+
+🧠 Quick Way to Remember:
+Invoice = Money you expect to RECEIVE.
+
+
+Bill = Money you need to PAY.
+==============================================================================================
+
+🧾 Job Summary:
+Title: Xero Transaction Data Integration to Azure SQL Server
+Posted On: June 20, 2025
+Category: Back-End Development
+Deadline: August 1, 2025
+
+📌 Project Objective:
+Build a secure, automated solution to extract transaction data from Xero (4 companies) and import it into an Azure SQL Server database, running autonomously on an Azure Virtual Machine (no third-party cloud use).
+
+✅ Key Responsibilities:
+# Xero API Integration:
+
+    Connect securely to Xero for 4 companies.
+
+    Extract  Invoices (Sales & Purchases), payments, and bank transactions.
+
+    Handle access token management,Data Transformation & Mapping and ensure complete data retrieval.
+
+# Data Transformation & Mapping:
+
+    The data should be stored in the SQL server in a format that is appropriate for reporting.
+
+    necessary data transformations should be handled (e.g., date format conversions, currency handling, data type adjustments) 
+    to align with the Azure SQL schema and ensure consistency for reporting.  
+
+    Add processTimestamp to each record.
+
+    Gracefully handle missing or inconsistent data.
+
+# Azure SQL Server Integration:
+
+    Securely connect to existing database.
+
+    Use upsert logic to insert/update data.
+
+    Optimize for bulk loading performance.
+
+# Automation & Scheduling:
+
+    Automate weekly data imports from Xero Application to their SQL Server DATABASE.
+
+    Run as a scheduled task on the Azure VM.
+
+# Error Handling & Logging:
+
+    Implement robust logging and error reporting for Api failures,data Transformation issues and any other error.
+
+    Optional email alerts for critical issues.
+
+# Security & Best Practices:
+
+    Securely store credentials (Azure Key Vault if possible).
+
+    Maintain clean, well-documented, and maintainable code.
+
+
+# Technical Requirements & Preferred Skills:  
+1. Xero API: Proven experience working with the Xero API. Experience handling multiple Xero accounts or organisations is a plus.  
+2. Programming Language: Python (preferred), C#, Node.js, or a similar language suitable for data integration and capable of running on a Windows Azure Virtual Machine.  
+3. Database: Experience with SQL data storage.  
+4. Data Integration: Experience with ETL/ELT processes and data pipeline development. 5. Scheduling: Experience setting up scheduled tasks (e.g., Windows Task Scheduler, Cron jobs) on a virtual machine.  
+
+
+Deliverables:  
+1. Fully functional and tested data import solution running on our Azure Virtual Machine.  
+2. Source code with comprehensive comments and documentation. 
+3. Deployment instructions and configuration guide for the Azure VM.  
+4. Monitoring and error notification setup (if applicable).  
+5. Knowledge transfer session to our internal team. 
+
+- Link for different approaches
+https://chatgpt.com/share/686b4923-d8b0-800d-bbcb-dacf0d64e9ee
+
+
+
+
+
+REQUIREMENTS
+2. Extracting the following relevant transaction data: 1. Invoices (Sales & Purchases) 2. Payments 3. Bank Transactions 
