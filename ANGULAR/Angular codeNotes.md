@@ -189,7 +189,7 @@ import { Observable, Subscription, timer } from 'rxjs';
     }
   }
 
-----------calling function continuously ---------
+# ----------calling function continuously ---------
 
       async ngOnInit(): Promise<void>
       {
